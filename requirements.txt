@@ -1,0 +1,14 @@
+openai>=1.0.0
+tqdm
+
+torch
+transformers
+evaluate
+nltk
+numpy
+keybert
+sentence-transformers
+bert-score
+bleurt-pytorch
+sacrebleu
+rouge-score
