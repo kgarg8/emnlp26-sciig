@@ -58,6 +58,8 @@ an annotated side-by-side sample, and all seven prompt templates — lives in
 | [`compute_metrics.py`](compute_metrics.py) | Scores generated Introductions against the human-written references across the full metric suite. |
 | [`index.html`](index.html) | Self-contained project page (also the GitHub Pages site). |
 | [`requirements.txt`](requirements.txt) | Python dependencies. |
+| [`data/`](data/) | NAACL 2025 and ICLR 2025 benchmark datasets (CC BY 4.0). |
+| [`data_collection/`](data_collection/) | Dataset construction pipeline (PDF retrieval, parsing, citation mapping, Semantic Scholar enrichment). |
 
 ---
 
@@ -83,22 +85,34 @@ python generate.py --api_key "$OPENROUTER_API_KEY" --dataset naacl_2025 --prompt
 
 ## Data layout
 
-Both scripts expect the corpora under `data/`:
+The datasets are released in `data/` (CC BY 4.0):
 
 ```
 data/
 ├── naacl_2025/
-│   ├── naacl_2025_s2orc_processed_with_officialSemantic.json
-│   └── holdout_set.json          # source of few-shot exemplars
+│   └── naacl_2025_s2orc_processed_with_officialSemantic.json
 └── ICLR_2025/
-    ├── ICLR_2025_s2orc_processed_with_officialSemantic.json
-    └── holdout_set.json
+    ├── ICLR_2025_s2orc_Split_1_processed_with_officialSemantic.json
+    ├── ICLR_2025_s2orc_Split_2_processed_with_officialSemantic.json
+    ├── ICLR_2025_s2orc_Split_3_processed_with_officialSemantic.json
+    └── ICLR_2025_s2orc_Split_4_processed_with_officialSemantic.json
 ```
 
-Each record carries `title`, `abstract`, `introduction` (the reference target), and `neighbors` —
-a dictionary keyed by citation identifier (e.g. `"Li et al. 2022"`) holding each cited work's
-`title`, `authors`, and `abstract`. Records whose cited works are missing any of the three are
-skipped.
+ICLR 2025 is split into four parts to stay within GitHub's file-size limit. `generate.py` and
+`compute_metrics.py` read a single file, so combine the parts once (in order 1 to 4) before using
+`--dataset ICLR_2025`:
+
+```bash
+python -c "import json; d=[]; [d.extend(json.load(open(f'data/ICLR_2025/ICLR_2025_s2orc_Split_{i}_processed_with_officialSemantic.json'))) for i in range(1,5)]; json.dump(d, open('data/ICLR_2025/ICLR_2025_s2orc_processed_with_officialSemantic.json','w'))"
+```
+
+Each record carries `title`, `abstract`, `introduction` (the reference target), and `neighbors` -
+a list holding one dictionary keyed by citation identifier (e.g. `"Li et al., 2022"`), with each
+cited work's `title`, `authors`, and `abstract`. Cited works missing any of the three are skipped,
+and papers with no remaining cited works are skipped.
+
+The few-shot exemplar files (`data/<dataset>/holdout_set.json`, used by `ONE_SHOT` / `TWO_SHOT` /
+`THREE_SHOT`) will be added separately.
 
 <details>
 <summary><b>How the datasets were built</b></summary>
@@ -113,7 +127,7 @@ published Introduction as the target.
 
 Average introduction length is 597–771 words, with 13.4–15.3 citations per paper.
 
-The datasets are not bundled here; they will be released under CC BY 4.0.
+The datasets are in [`data/`](data/) under CC BY 4.0, and the full construction pipeline is in [`data_collection/`](data_collection/).
 
 </details>
 

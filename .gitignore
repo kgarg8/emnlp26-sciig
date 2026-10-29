@@ -1,5 +1,4 @@
 # Data and model outputs
-data/
 api_outputs/
 keyphrase_outputs/
 *.jsonl
