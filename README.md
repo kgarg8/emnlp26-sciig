@@ -7,12 +7,12 @@
 **Krishna Garg**<sup>1\*</sup> · **Firoz Shaik**<sup>2\*</sup> · **Sambaran Bandyopadhyay**<sup>3</sup> · **Cornelia Caragea**<sup>2</sup>
 
 <sup>1</sup>University of Oxford · <sup>2</sup>University of Illinois Chicago · <sup>3</sup>Adobe Research, India
-<sub>\*Equal contribution. Work performed while at University of Illinois Chicago.</sub>
 
 <br>
 
 [![Project page](https://img.shields.io/badge/Project_Page-SciIG-0b9599?style=for-the-badge)](https://kgarg8.github.io/emnlp26-sciig/)
-[![Venue](https://img.shields.io/badge/EMNLP-2026-2869d8?style=for-the-badge)](https://kgarg8.github.io/emnlp26-sciig/)
+[![Paper PDF](https://img.shields.io/badge/Paper-PDF-c8102e?style=for-the-badge)](https://aclanthology.org/2026.emnlp-main.1288.pdf)
+[![Venue](https://img.shields.io/badge/EMNLP-2026-2869d8?style=for-the-badge)](https://2026.emnlp.org/)
 [![Code license](https://img.shields.io/badge/Code-MIT-e68418?style=for-the-badge)](LICENSE)
 [![Data license](https://img.shields.io/badge/Data-CC_BY_4.0-7138b2?style=for-the-badge)](LICENSE-DATA)
 
@@ -274,12 +274,26 @@ their own terms, which the licenses here do not override.
 ## Citation
 
 ```bibtex
-@inproceedings{garg2026sciig,
-  title     = {Towards AI-Assisted Research Writing: Benchmarking LLMs for AI/ML Introduction Generation},
-  author    = {Garg, Krishna and Shaik, Firoz and Bandyopadhyay, Sambaran and Caragea, Cornelia},
-  booktitle = {Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
-  year      = {2026},
-  note      = {To appear}
+@inproceedings{garg-etal-2026-towards,
+    title = "Towards {AI}-Assisted Research Writing: Benchmarking {LLM}s for {AI}/{ML} Introduction Generation",
+    author = "Garg, Krishna  and
+      Shaik, Firoz  and
+      Bandyopadhyay, Sambaran  and
+      Caragea, Cornelia",
+    editor = "Lee, Hung-Yi  and
+      Dev, Sunipa  and
+      Li, Junyi Jessy  and
+      Elliott, Desmond",
+    booktitle = "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing",
+    month = oct,
+    year = "2026",
+    address = "Budapest, Hungary",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.emnlp-main.1288/",
+    doi = "10.18653/2026.emnlp-main.1288",
+    pages = "29341--29365",
+    ISBN = "979-8-89176-459-0",
+    abstract = "As researchers increasingly adopt LLMs as writing assistants, generating high-quality research paper introductions remains both challenging and essential. In this work, we benchmark Scientific Introduction Generation (SciIG), evaluating how well LLMs can produce coherent introductions from titles, abstracts, and related works in the machine learning domain. Curating new datasets from NAACL 2025 and ICLR 2025 papers, we assess five state-of-the-art models, including both open-source (DeepSeek-v3, Gemma-3-12B, LLaMA-4 Maverick, MistralAI Small 3.1) and closed-source GPT-4o systems across multiple dimensions: lexical overlap, semantic similarity, content coverage, faithfulness, consistency, citation correctness, and narrative quality. Our comprehensive framework combines automated metrics with LLM-as-a-judge evaluations. Results demonstrate LLaMA-4 Maverick{'}s superior performance on most metrics, particularly in lexical overlap, content coverage, citation quality, and perplexity. Moreover, three-shot prompting outperforms fewer-shot approaches more than 50{\%} of the time on formula-based automated metrics and performs consistently better on all human evaluation metrics. These findings provide practical insights into developing effective research writing assistants and set realistic expectations for LLM-assisted academic writing. To foster reproducibility and future research, we publicly release all code and datasets.[Project page, code, and datasets: {\ensuremath{<}}https://kgarg8.github.io/emnlp26-sciig/{\ensuremath{>}}]"
 }
 ```
 
